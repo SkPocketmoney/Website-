@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Date and Time</title>
+  
+<style>
+  
+  body {
+  background-color: #000;
+  color: #0f0;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  padding-top: 50px;
+}
+
+#time, #currentDateTime, #result {
+  color: red;
+  font-size: 50px;
+  margin-top: 20px;
+}
+
+  #timeContainer {
+  width: 40%;
+  margin-top: 20px;
+}
+
+#time {
+  font-size: 20px;
+  display: inline-block;
+  background-color: black; /* background color for the box */
+  color: red; /* text color for the box */
+  padding: 20px; /* padding around the text */
+  border: 2px solid green; /* border around the box */
+  border-radius: 10px; /* border radius for rounded corners */
+}
+  
+  
+  
+  
+#minute {
+  display: none; /* Hide the minute paragraph */
+}
+
+h1 {
+  color: #0f0;
+  font-size: 26px;
+  margin-bottom: 50px;
+}
+
+  #currentDateTimeContainer {
+  width: 40%;
+  margin-top: 20px;
+}
+
+#currentDateTime {
+  font-size: 30px;
+  display: inline-block;
+  background-color: black; /* background color for the box */
+  color: red; /* text color for the box */
+  padding: 20px; /* padding around the text */
+  border: 2px solid green; /* border around the box */
+  border-radius: 10px; /* border radius for rounded corners */
+}
+  
+  
+  
+#resultContainer {
+  width: 100%;
+  margin-top: 40px;
+}
+
+#result {
+  font-size: 50px;
+  display: inline-block;
+  background-color: black; /* background color for the box */
+  color: red; /* text color for the box */
+  padding: 20px; /* padding around the text */
+  border: 2px solid green; /* border around the box */
+  border-radius: 10px; /* border radius for rounded corners */
+}
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+/* Your existing CSS styles here */
+
+
+
+  .payment-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .payment-form {
+    background-color: #fff;
+    padding: 200px;
+    border-radius: 100px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+
+  .payment-form h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .payment-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .payment-form button:hover {
+    background-color: #45a049;
+  }
+</style>
+
+</head>
+
+<body>
+<!-- Payment overlay -->
+<div class="payment-overlay" id="payment-overlay">
+    <div class="payment-form">
+        <h2>Payment Form</h2>
+        <!-- Razorpay payment button -->
+        <button id="razorpay-button">Pay ₹100 to Access Premium Content</button>
+    </div>
+</div>
+
+<!-- Your existing HTML content here -->
+
+<canvas id="Matrix"></canvas>
+<h1>91 Club Wingo 1 Minute</h1>
+<p id="time"></p>
+<h1>Bet Number</h1>
+<div id="currentDateTime"></div>
+<h1>Will Be</h1>
+<p id="result"></p>
+
+<script>
+  
+    // Matrix digital rain code
+const canvas = document.getElementById('Matrix');
+const context = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const nums = '0123456789';
+
+const alphabet = katakana + latin + nums;
+
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+
+const rainDrops = [];
+
+for (let x = 0; x < columns; x++) {
+    rainDrops[x] = 1;
+}
+
+const draw = () => {
+    context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    context.fillStyle = '#0F0';
+    context.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < rainDrops.length; i++) {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        context.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+    }
+};
+
+setInterval(draw, 30);
+    // Function to generate a random word
+    function generateWord() {
+      var words = ["BIG", "SMALL"];
+      var randomIndex = Math.floor(Math.random() * words.length);
+      return words[randomIndex];
+    }
+
+    // Function to update date and time
+    function updateDateTime() {
+      // Get current date and time
+      var now = new Date();
+      var currentTime = new Date();
+      var seconds = currentTime.getSeconds();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+
+      // Format the time if needed (e.g., add leading zeros)
+      if (hours < 10) {
+        hours = '0' + hours;
+      }
+      if (minutes < 10) {
+        minutes = '0' + minutes;
+      }
+      if (seconds < 10) {
+        seconds = '0' + seconds;
+      }
+
+      // Display the current time
+      var timeString = hours + ":" + minutes + ":" + seconds;
+      document.getElementById("time").textContent = timeString;
+
+      // Generate or retrieve a word for the current time
+      var savedWord = localStorage.getItem("word_" + hours + "_" + minutes);
+      if (savedWord) {
+        document.getElementById("result").textContent = savedWord;
+      } else {
+        var newWord = generateWord();
+        document.getElementById("result").textContent = newWord;
+        localStorage.setItem("word_" + hours + "_" + minutes, newWord);
+      }
+
+      // Extract year, month, and date
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1; // Month is zero-based, so we add 1
+      var date = now.getDate();
+
+      // Format the date string
+      if (month < 10) {
+        month = '0' + month;
+      }
+      if (date < 10) {
+        date = '0' + date;
+      }
+      
+      // Calculate bets
+      var bets = parseInt(hours) * 60 + parseInt(minutes) + 1;
+
+      // Construct the string to display
+      var dateTimeString = year + month + date +'01'+ bets;
+
+      // Insert the string into the HTML element
+      document.getElementById('currentDateTime').innerHTML = dateTimeString;
+    }
+
+    // Call the updateDateTime function initially
+    updateDateTime();
+
+    // Update date and time every second
+    setInterval(updateDateTime, 1000);
+  
+// Your existing JavaScript code here
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.getElementById('razorpay-button').onclick = function(e){
+    var options = {
+        "key": "rzp_test_fiIwmRET6CApc2",
+        "amount": 1000, // amount in paisa (₹10 in paisa)
+        "currency": "INR",
+        "name": "Your News Website",
+        "description": "Access Premium Content",
+        "handler": function (response){
+            alert('Payment successful!'); // Grant access to premium content here
+            document.getElementById('payment-overlay').style.display = 'none'; // Hide payment overlay
+        }
+    };
+    var rzp = new Razorpay(options);
+    rzp.open();
+    e.preventDefault();
+}
+</script>
+  
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the payment has been completed previously
+    var paymentCompleted = localStorage.getItem('paymentCompleted');
+
+    // If paymentCompleted is true, hide the payment overlay
+    if (paymentCompleted) {
+        document.getElementById('payment-overlay').style.display = 'none';
+    }
+});
+
+document.getElementById('razorpay-button').onclick = function(e){
+    var options = {
+        "key": "rzp_test_fiIwmRET6CApc2",
+        "amount": 10000, // amount in paisa (₹100 in paisa)
+        "currency": "INR",
+        "name": "Your News Website",
+        "description": "Access Premium Content",
+        "handler": function (response){
+            alert('Payment successful!'); // Grant access to premium content here
+            document.getElementById('payment-overlay').style.display = 'none'; // Hide payment overlay
+            localStorage.setItem('paymentCompleted', true); // Store payment completion flag
+        }
+    };
+    var rzp = new Razorpay(options);
+    rzp.open();
+    e.preventDefault();
+}
+</script>
+
+  
+</body>
+</html>
